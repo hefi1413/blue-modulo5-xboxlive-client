@@ -3,22 +3,17 @@ import FavoriteGames from "components/FavoriteGames";
 import GamesGenre from "components/GamesGenre";
 import ErrorBoundary from "components/ErrorBoundary"
 import Menu from "components/Menu"
-
-const id = 1;
-const url = 'https://i.pinimg.com/originals/6c/86/77/6c8677e1e42f18b85b7bc1253a1becfe.jpg';
+import { ProfileCardItem } from "components/ProfileCard/type";
 
 const Homepage = () => {
+	
 	return  ( 
 		<S.Homepage>
-			<Menu
-				urlProfile={url} 
-			/>
+			<Menu profilePage={false} />
 			<S.HomeContent>
 				<S.HomeContentTitle> FAVORITOS </S.HomeContentTitle>
 				<ErrorBoundary>
-					<FavoriteGames
-						profileId={id}
-					/>
+					<FavoriteGames />
 				</ErrorBoundary>
 				<S.HomeContentTitle> GÊNEROS </S.HomeContentTitle>
 				<ErrorBoundary>

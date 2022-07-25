@@ -1,13 +1,20 @@
 import * as S from "./style"
 
-const Game = ( {title, image}) => {
+const GameCard = ( {id, title, image, clickItem, info}) => {
 	return ( 
 		<>
-			<S.GameCard>
-				<S.GameImage src={image} />
+			<S.GameCard 
+				tabIndex={1}
+				title={info}
+				onClick={() => clickItem(id, title)} 
+				>
+				<S.GameCardImageBox>
+					<S.GameCardImage src={image} />
+				</S.GameCardImageBox>
+				<S.GameCardTitle>{title}</S.GameCardTitle>
 			</S.GameCard>
 		</>
 	)
 };
 
-export default Game;
+export default GameCard;

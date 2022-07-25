@@ -24,7 +24,7 @@ export const HomeContent = styled.main`
 	`}
 `;
 
-export const HomeContentTitle = styled.h1`
+export const HomeContentTitle = styled.h2`
 	${() => css`
 		margin-right: 30px;
 		margin-top: 15px;

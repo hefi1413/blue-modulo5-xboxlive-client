@@ -4,10 +4,10 @@ export const FavoritesGames = styled.div`
 	${() => css`
 		display: flex;
 		flex-flow: row wrap;
-		gap:20px;
+		gap:15px;
 		justify-content: flex-start;
 		width: 93%;
-		height:260px;
+		height:210px;
   		overflow-y: auto;
 		margin-top: 10px;
 		padding: 05px;

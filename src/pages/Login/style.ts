@@ -4,7 +4,6 @@ import pattern from "assets/imgs/pizza-pattern.png";
 export const Login = styled.section`
 	${({ theme }) => css`
 		background-color: ${theme.colors.baseBg2};
-		background-image: url(${pattern});
 		background-size: cover;
 		background-position: center;
 		width: 100vw;
@@ -18,6 +17,6 @@ export const LoginContent = styled.main`
 		height: 100%;
 		display: flex;
 		justify-content: center;
-		align-items: center; ;
+		align-items: center;
 	`}
 `;

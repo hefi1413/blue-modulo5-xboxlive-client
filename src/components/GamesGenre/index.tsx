@@ -11,25 +11,35 @@ const GamesGenre = () => {
     const [genres, setGenres] = useState<GenreCardItem[]>();
     const navigate = useNavigate();
 
-    const getGamesById = async ({idGenre}) => {
-        console.log( 'loadGames()');
-
-        navigate( RoutePath.SETTINGS_GAMES, {state:idGenre});
+    const handleGenreDbClick = async (idGenre) => {
+        // armazena IDGENRE para ser reutilizado por <GamesList />
+        localStorage.setItem('gamesgenre/idgenre', idGenre);
+        navigate( `gamessettings/${idGenre}` );
+        return;
     };
 
     const loadGenres = async () => {
-        console.log( 'loadGenres()');
+        const token =localStorage.getItem('token');
+        if(!token) {
+            navigate( RoutePath.LOGIN );
+            return;
+        }
 
         const response =await XGenresService.getGenres();
         setGenres(response);
 
+        // armazena generos cadastrasdos para ser recuperado por <GameEdit />
+        localStorage.setItem('gamessettings/add', JSON.stringify(response));
+
         if(!response) {
-            throw new Error('Falha carregando jogos favoritos')
+            throw new Error('Falha carregando gêneros');
         }
     };
 
     useEffect(() => {
+
         loadGenres();
+        
     }, []);
 
     return ( 
@@ -41,8 +51,9 @@ const GamesGenre = () => {
                         name={genre.name}
                         image={genre.coverImageUrl}
                         key={index}
-                        clickItem={(genreId) => getGamesById(genreId)}
-                        //handleGenre={handleClick}
+                        clickItem={null}
+                        dblClickItem={handleGenreDbClick}
+                        info={'Duplo clique para ver os jogos deste gênero'}
                     />
                 ) ) }
             </S.GamesGenre>

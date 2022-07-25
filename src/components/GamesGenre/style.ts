@@ -4,7 +4,7 @@ export const GamesGenre = styled.div`
 	${() => css`
 		display: flex;
 		flex-flow: row wrap;
-		gap: 10px;
+		gap: 20px;
 		justify-content: flex-start;
 		overflow-y: auto;
 		width: 93%;

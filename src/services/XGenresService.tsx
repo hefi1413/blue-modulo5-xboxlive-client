@@ -1,15 +1,22 @@
-import axios from 'axios';
-import { GenreCardItem } from "../components/GenreCard/type";
-import { baseURL } from 'assets/env.js';
-
-axios.defaults.baseURL = baseURL;
-axios.defaults.headers.post["content-type"] = "application/json";
-axios.defaults.headers.common = {'Authorization':'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im5vbWUyQGdtYWlsLmNvbSIsImlhdCI6MTY1NzA1NzAzMSwiZXhwIjoxNjU3MDkzMDMxfQ.RInDCUEjyTuP74XlaGT9bs-pUD9dhBxnFWLJPYP2BEU'};
+import api from 'helpers/Api';
+import { GenreCardItem } from 'components/GenreCard/type';
 
 export const XGenresService = {
     getGenres: async () => {
         try {
-            const req = await axios.get(`/genres/`);
+            const req = await api.get(`/genres/`);
+
+            let data =req.data;
+            console.log( 'req data', data );
+
+            return data;
+        } catch (err) {
+            console.log('Error', err);
+        }
+    },
+    getGenreById: async ( id :string ) => {
+        try {
+            const req = await api.get(`/genres/${id}`);
 
             let data =req.data;
 
@@ -17,7 +24,41 @@ export const XGenresService = {
 
             return data;
         } catch (err) {
-            alert(err);
+            console.log('Error:', err);
+            return err;
         }
     },
+    createGenre: async (newGenre :GenreCardItem) => {
+        delete newGenre.id;
+        
+        console.log('newGame:',newGenre);
+        try {
+            const req = await api.post(`/genres`, newGenre );
+
+            return req.data;
+        } catch (err) {
+            console.log('Error:', err);
+            return err;
+        }
+    },
+    updateGenre: async ( genre :GenreCardItem ) => {
+        try {
+            const req = await api.patch(`/genres/${genre.id}`, genre );
+
+            return req.data;
+        } catch (err) {
+            console.log('Error:', err);
+            return err;
+        }
+    },
+    deleteGenre: async ( id :string ) => {
+        try {
+            const req = await api.delete(`/genres/${id}` );
+
+            return req.data;
+        } catch (err) {
+            console.log('Error:', err);
+            return err;
+        }
+    }
 };

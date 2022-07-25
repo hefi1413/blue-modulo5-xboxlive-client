@@ -15,3 +15,30 @@ export const BoxLogin = styled.section`
 		color: ${theme.colors.textColor};
 	`}
 `;
+
+export const BoxLoginForm = styled.form`
+  ${({ theme }) => css`
+  	display: flex;
+  	flex-direction: column;
+  	gap: 15px;
+  	input {
+  		${theme.mixins.input()};
+  		color: ${theme.colors.textColor};
+  	}
+  `}
+`;
+
+export const BoxLoginTitle = styled.h2`
+  ${({ theme }) => css`
+	text-align: center;
+  `}
+`;
+
+export const BoxLoginError = styled.span`
+  ${({ theme }) => css`
+  	color: ${theme.colors.secondaryColor};
+  	text-align: center;
+  	display: inline-block;
+  	margin-top: 25px;
+  `}
+`;

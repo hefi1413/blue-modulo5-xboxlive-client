@@ -5,20 +5,19 @@ export const MenuEdit = styled.div`
 		display: flex;
 		flex-wrap: nowrap;
 		flex-direction: row;
-		justify-content: flex-end;
 		align-items: center;
-		margin-right: 05px;
-		padding-right: 10px;
+		justify-content: flex-end;
+		gap: 10px;
 		height: 60px;
 		width: 100%;
-		background: ${theme.colors.baseBg2};
         color: white;
 		box-sizing: border-box;
 	`}
 `;
 
 export const MenuEditItem = styled.a`
-	${() => css`
+	${( { theme } ) => css`
 		text-align: center;
+		color: ${theme.colors.primaryColor};
     `}
 `;

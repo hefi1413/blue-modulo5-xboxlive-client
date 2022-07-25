@@ -2,13 +2,12 @@ import styled, { css } from "styled-components";
 
 export const ButtonLarge = styled.button`
 	${({ theme }) => css`
-		background: ${theme.colors.primaryColor};
-		border: none;
-		border-radius: 8px;
-		color: ${theme.colors.textColor};
 		display: flex;
 		justify-content: center;
 		align-items: center;
+		background: ${theme.colors.primaryColor};
+		color: ${theme.colors.textColor};
+		border: none;
 		height: 48px;
 		width: 100%;
 		cursor: pointer;
@@ -17,7 +16,7 @@ export const ButtonLarge = styled.button`
 		box-shadow: 0px 8px 24px 0px ${theme.colors.shadowColor};
 		&:disabled {
 			color: ${theme.colors.textDark};
-			background: ${theme.colors.baseBg1};
+			background: gray;
 			box-shadow: none;
 			cursor: not-allowed;
 		}

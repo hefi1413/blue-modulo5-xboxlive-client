@@ -1,6 +1,6 @@
 
 export interface GenreCardItem {
-    id: number;
+    id?: string;
     name: string;
     coverImageUrl : string;
 }
