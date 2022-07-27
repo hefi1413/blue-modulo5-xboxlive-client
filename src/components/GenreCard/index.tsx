@@ -7,8 +7,8 @@ const GenreCard = ( {id, name, image, clickItem, dblClickItem, info}) => {
 			<S.GenreCard 
 				title={info}
 				tabIndex={1}
-				onClick={() => clickItem( id, name )}
-				onDoubleClick={() => dblClickItem( id, name )}>
+				onClick={() => ( clickItem ? clickItem( id, name ) : null )}
+				onDoubleClick={() => ( dblClickItem ? dblClickItem( id, name ) : null)}>
 				<S.GenreCardImageBox>
 					<S.GenreCardImage src={image}  />
 				</S.GenreCardImageBox>

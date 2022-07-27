@@ -7,28 +7,31 @@ import { XGenresService } from 'services/XGenresService';
 import * as S from "./style"
 import Menu from 'components/Menu';
 import ButtonLarge from 'components/ButtonLarge';
-import 'react-listbox/dist/react-listbox.css';
 
-interface GenreCardValues {
-    label: string
-    value: number
-}
 
 const GenreEdit = (props) => {
     const { id } =useParams();
     const [values, setValues] = useState<GenreCardItem>({
-        id: '',
-        name: '',
-        coverImageUrl: ''
-    });
-    let navigate = useNavigate();
-    
+        'name':'',
+        'coverImageUrl':'' });
+
+    const navigate = useNavigate();
+
+    /*
     const handleChangesValues = (event: React.ChangeEvent<HTMLInputElement>)  => {
         setValues((values: GenreCardItem) => ({
             ...values,
             [event.target.name]: event.target.value
         }))
-    }  
+        console.log(event.target.value)
+    } 
+    */
+
+    const setInput = (newValues) => {
+        setValues( values => ({
+            ...values,
+            ...newValues }))
+    } 
 
     async function handleBack() {
         navigate(`/genressettings`);
@@ -37,7 +40,6 @@ const GenreEdit = (props) => {
     
     async function handleSubmit(event) {
         event.preventDefault();
-
         if( id ) {
             // altera genero na base dados
             XGenresService.updateGenre(values);
@@ -45,7 +47,6 @@ const GenreEdit = (props) => {
             // cria genero na base dados
             XGenresService.createGenre(values);
         }
-
         // volta para tela <gamesettings>
         handleBack();
     }
@@ -53,7 +54,6 @@ const GenreEdit = (props) => {
     const loadGenre = async () => {
         if( id ) {
             let response  =await XGenresService.getGenreById( id );
-
             setValues( response )
         }
     }
@@ -68,11 +68,11 @@ const GenreEdit = (props) => {
         <> 
             <S.GameRegister>
                 <Menu profilePage={false} />
-                <S.GameRegisterTitle> { ( id ? 'ALTERAR G~ENERO' : 'ADICIONAR GÊNERO')} </S.GameRegisterTitle> 
+                <S.GameRegisterTitle> { ( id ? 'ALTERAR GêNERO' : 'ADICIONAR GÊNERO')} </S.GameRegisterTitle> 
                 <S.GameRegisterContent>
                     <S.GameRegisterForm onSubmit={handleSubmit}>
-                        <input type="text" name='name' onChange={handleChangesValues} placeholder='Nome do gênero' value={values.name} />
-                        <input type="text" name='coverImageUrl' onChange={handleChangesValues}  placeholder='Imagem url' value={values.coverImageUrl}/>
+                        <input type="text" name='name' onChange={(e) => setInput({name : e.target.value})} placeholder='Nome do gênero' value={values.name} />
+                        <input type="text" name='coverImageUrl' onChange={(e) => setInput({coverImageUrl: e.target.value})}  placeholder='Imagem url' value={values.coverImageUrl}/>
                         <S.GameRegisterButton>
                             <ButtonLarge value={ ( id ? "Confirmar" : "Salvar") } type="submit" />
                         </S.GameRegisterButton>

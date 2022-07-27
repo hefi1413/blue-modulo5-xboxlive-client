@@ -7,14 +7,13 @@ import { RoutePath } from "assets/types/routes";
 import { useNavigate } from "react-router-dom";
 
 const GamesGenre = () => {
-    console.log( 'GamesGenre()');
     const [genres, setGenres] = useState<GenreCardItem[]>();
     const navigate = useNavigate();
 
     const handleGenreDbClick = async (idGenre) => {
-        // armazena IDGENRE para ser reutilizado por <GamesList />
-        localStorage.setItem('gamesgenre/idgenre', idGenre);
-        navigate( `gamessettings/${idGenre}` );
+        // armazena IDGENRE para ser reutilizado por <GameEdit />
+        localStorage.setItem('/gamesgenre/idgenre', idGenre);
+        navigate( `/gamessettings/${idGenre}` );
         return;
     };
 

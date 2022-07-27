@@ -45,14 +45,13 @@ const ProfileEdit = (props) => {
                 XProfilesService.createProfile(values);
             }
         }
-
         // volta para tela <Profilesettings>
         handleBack();
     }
 
     const loadProfile = async () => {
         if( id ) {
-            const response  =await XProfilesService.getProfileById( id );
+            const response =await XProfilesService.getProfileById( id );
 
             delete response.games;
 

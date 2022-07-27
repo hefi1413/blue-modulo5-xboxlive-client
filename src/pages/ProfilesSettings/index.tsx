@@ -32,7 +32,7 @@ const ProfilesSettings = (props) => {
 	function callSwall() {
 		swal({
 		  title: 'Remover Profile',
-		  text: `Deseja excluir realmente o perfil ${selectedProfile.title}`,
+		  text: `Deseja realmente excluir o perfil ${selectedProfile.title}`,
 		  icon: 'error',
 		  buttons: ["Não", "Sim"]
 		})
@@ -53,7 +53,7 @@ const ProfilesSettings = (props) => {
 			const response =await XProfilesService.deleteProfile( selectedProfile.id )
 			setRemovedProfile(response);
 			if(!response) {
-				throw new Error('Falha excluindo gênero')
+				throw new Error('Falha excluindo perfil')
 			}
 		}
 	}
@@ -67,19 +67,6 @@ const ProfilesSettings = (props) => {
 		return;
 	}
 
-	function handleMenuItemClick( action ) {
-		if (action==='add') {
-			navigate('/profilessettings/add');
-		} 
-		else 
-		if (action==='edit') {
-			navigate(`/profilessettings/edit/${selectedProfile.id}`);
-		} 
-		else {
-			callSwall();
-		}
-	}
-
 	useEffect( () => {
 	},[])
 
@@ -91,18 +78,16 @@ const ProfilesSettings = (props) => {
 				<MenuEdit>
 					<MenuEditItem 
 						id="menuitem-add" 
-						onClick={() => handleMenuItemClick('add')} 
-						href={'#'} 
+						href={'/profilessettings/add'} 
 						> Adicionar </MenuEditItem>
 					<MenuEditItem 
 						id="menuitem-edit" 
-						onClick={() => handleMenuItemClick('edit')} 
-						href={'#'}
+						href={`/profilessettings/edit/${selectedProfile.id}`}
 						style={{pointerEvents: (selectedProfile.id ? "auto" : "none")}}
 						> Editar </MenuEditItem>
 					<MenuEditItem 
 						id="menuitem-remove" 
-						onClick={() => handleMenuItemClick('remove')} 
+						onClick={() => callSwall()} 
 						href={'#'}
 						style={{pointerEvents: (selectedProfile.id ? "auto" : "none")}}
 						> Remover </MenuEditItem>

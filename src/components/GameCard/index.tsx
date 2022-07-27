@@ -6,7 +6,7 @@ const GameCard = ( {id, title, image, clickItem, info}) => {
 			<S.GameCard 
 				tabIndex={1}
 				title={info}
-				onClick={() => clickItem(id, title)} 
+				onClick={() => ( clickItem ? clickItem(id, title) : null )} 
 				>
 				<S.GameCardImageBox>
 					<S.GameCardImage src={image} />

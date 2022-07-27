@@ -4,15 +4,16 @@ import { XGamesService } from "services/XGamesService";
 import  GameCard  from '../GameCard';
 import * as S from "./style"
 
-const GamesList = ({ clickItem, listUpdate }) => {
+const GamesList = ({ idGenre, clickItem, listUpdate }) => {
     const [games, setGames] = useState<GameCardItem[]>();
 
 	async function loadGames() {
         
-        const idgenre =localStorage.getItem('/gamessettings/idgenre');
+        //const idgenre =localStorage.getItem('/gamessettings/idgenre');
+        //const idGenre =localStorage.getItem('/gamesgenre/idgenre');
         // se existie IDGENRE lê todos jogos deste gênero
-		if(idgenre) {
-			const response =await XGamesService.getGamesByGenre(idgenre);
+		if(idGenre) {
+			const response =await XGamesService.getGamesByGenre(idGenre);
 			setGames(response);
 
 			if(!response) {
@@ -31,6 +32,8 @@ const GamesList = ({ clickItem, listUpdate }) => {
 	}
 
     useEffect(() => {
+
+        console.log('idgenre:', idGenre);
 
         loadGames();
 

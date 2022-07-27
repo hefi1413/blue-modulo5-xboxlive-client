@@ -19,7 +19,7 @@ function App() {
         </BrowserRouter>
       </ThemeProvider>
     </>
-  );
+  )
 }
 
 export default App;

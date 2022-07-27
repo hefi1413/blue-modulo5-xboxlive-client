@@ -55,24 +55,8 @@ const GenresSettings = (props) => {
 		}
 	}
 
-	function handleMenuItemClick( action ) {
-		if (action==='add') {
-			navigate('/genressettings/add');
-		} 
-		else 
-		if (action==='edit') {
-			navigate(`/genressettings/edit/${selectedGenre.id}`);
-		} 
-		else {
-			callSwall();
-		}
-	}
-
 	useEffect( () => {
 		// armazena dados do gênero invocado pela página <homepage>
-		if(id) {
-			sessionStorage.setItem("/genressettings/idgenre", id );
-		}
 	},[])
 
 	return  ( 
@@ -81,9 +65,19 @@ const GenresSettings = (props) => {
 			<S.GenresSettingsContent>
 				<S.GenresSettingsTitle> GÊNEROS </S.GenresSettingsTitle>
 				<MenuEdit>
-					<MenuEditItem id="menuitem-add" onClick={() => handleMenuItemClick('add')} href={`#`}> Adicionar </MenuEditItem>
-					<MenuEditItem id="menuitem-edit" onClick={() => handleMenuItemClick('edit')} href={'#'}> Editar </MenuEditItem>
-					<MenuEditItem id="menuitem-remove" onClick={() => handleMenuItemClick('remove')} href={'#'}> Remover </MenuEditItem>
+					<MenuEditItem 
+							id="menuitem-add" 
+							href={`/genressettings/add`}> 
+							Adicionar </MenuEditItem>
+					<MenuEditItem 
+							id="menuitem-edit" 
+							href={`/genressettings/edit/${selectedGenre.id}`}> 
+							Editar </MenuEditItem>
+					<MenuEditItem 
+							id="menuitem-remove" 
+							onClick={() => callSwall()} 
+							href={'#'}> 
+							Remover </MenuEditItem>
 				</MenuEdit> 
 				<ErrorBoundary>
 					<GenresList	

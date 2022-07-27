@@ -13,10 +13,7 @@ const GenresList = ( { genreClick, listUpdate } ) => {
     const navigate = useNavigate();
 
     const loadGenres = async () => {
-        console.log( 'loadGames()');
-
         const token = localStorage.getItem('token');
-        //console.log( 'token:',token);
         if(!token) {
             navigate( RoutePath.LOGIN );
             return;

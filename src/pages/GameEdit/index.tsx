@@ -7,7 +7,6 @@ import { XGamesService } from 'services/XGamesService';
 import * as S from "./style"
 import Menu from 'components/Menu';
 import ButtonLarge from 'components/ButtonLarge';
-import 'react-listbox/dist/react-listbox.css';
 
 interface iGenres {
     id: string,
@@ -48,7 +47,7 @@ const GameEdit = (props) => {
     };
 
     async function handleBack() {
-        let idGenre =sessionStorage.getItem("/gamessettings/idgenre");
+        let idGenre =localStorage.getItem('/gamesgenre/idgenre');
         if(idGenre) {
             navigate(`/gamessettings/${idGenre}`);
         } else {
@@ -77,7 +76,7 @@ const GameEdit = (props) => {
         }
 
         // volta para tela <gamesettings>
-        //handleBack();
+        handleBack();
     }
 
     function loadGenres() {

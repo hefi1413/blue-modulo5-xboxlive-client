@@ -14,7 +14,7 @@ interface SelectedGame {
 }
 
 const GamesSettings = (props) => {
-	const { idGenre } =useParams();
+	const { id } =useParams();
 	const [selectedGame, setSelectedGame] = useState<SelectedGame>({
 		id: '',
 		title: '',
@@ -58,19 +58,6 @@ const GamesSettings = (props) => {
 		}
 	}
 
-	function handleMenuItemClick( action ) {
-		if (action==='add') {
-			navigate('/gamessettings/add');
-		} 
-		else 
-		if (action==='edit') {
-			navigate(`/gamessettings/edit/${selectedGame.id}`);
-		} 
-		else {
-			callSwall();
-		}
-	}
-
 	useEffect( () => {
 	},[])
 
@@ -82,25 +69,23 @@ const GamesSettings = (props) => {
 				<MenuEdit>
 					<MenuEditItem 
 						id="menuitem-add" 
-						style={{pointerEvents: (selectedGame ? "auto" : "none") }} 
-						onClick={() => handleMenuItemClick('add')} 
-						href={`#`}>  
+						href={`/gamessettings/add`}>  
 						Adicionar </MenuEditItem>
 					<MenuEditItem 
 						id="menuitem-edit" 
 						style={{pointerEvents: (selectedGame ? "auto" : "none") }} 
-						onClick={() => handleMenuItemClick('edit')} 
-						href={'#'}> 
+						href={`/gamessettings/edit/${selectedGame.id}`}> 
 						Editar </MenuEditItem>
 					<MenuEditItem 
 						id="menuitem-remove" 
 						style={{pointerEvents: (selectedGame ? "auto" : "none") }} 
-						onClick={() => handleMenuItemClick('remove')} 
+						onClick={() => callSwall()} 
 						href={'#'}> 
 						Remover </MenuEditItem>
 				</MenuEdit> 
 				<ErrorBoundary>
 					<GamesList
+						idGenre={id}
 						clickItem={handleGameClick} 
 						listUpdate={removedGame}
 					/>

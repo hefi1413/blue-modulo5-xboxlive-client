@@ -61,6 +61,7 @@ const Menu = ({ profilePage }) => {
 					:
 						<S.MenuRight>
 							<h3>XBlue LIVE</h3>
+							<a href="/profilessettings">Profiles</a> 
 							<a href="/logout">Logout</a> 
 						</S.MenuRight>
 				) }
